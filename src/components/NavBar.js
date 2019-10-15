@@ -7,6 +7,9 @@ function NavBar() {
       <Link className="navbar-brand" to="/">
         BarBack
       </Link>
+      <Link className="nav-item" to="/products">
+        Products
+      </Link>
     </nav>
   );
 }
