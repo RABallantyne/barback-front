@@ -13,18 +13,34 @@ export default class Products extends Component {
   };
 
   showProducts = () => {
-    axios.get("http://localhost:3000/bars/2/products").then(response => {
-      this.setState(
-        {
-          products: response.data,
-          displayProducts: response.data
-        },
-        () => this.sortProducts()
-      );
-    });
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
+
+    axios
+      .get(
+        `http://localhost:3000/bars/${this.props.selectedBar}/products`,
+        config
+      )
+      .then(response => {
+        this.setState(
+          {
+            products: response.data,
+            displayProducts: response.data
+          },
+          () => this.sortProducts()
+        );
+      });
   };
 
   componentDidMount() {
+    this.showProducts();
+  }
+
+  componentDidUpdate() {
     this.showProducts();
   }
 
@@ -37,23 +53,45 @@ export default class Products extends Component {
   };
 
   addProduct = product => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
     axios
-      .post("http://localhost:3000/bars/2/products", product)
+      .post(
+        `http://localhost:3000/bars/${this.props.selectedBar}/products`,
+        product,
+        config
+      )
       // .then(result => console.log(result))
       .then(() => this.showProducts())
       .then(() => this.setState({ showAddForm: false }));
   };
 
   editProduct = (product, id) => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
     axios
-      .patch(`http://localhost:3000/bars/2/products/${id}`, product)
-      // .then(result => console.log(result))
+      .patch(`http://localhost:3000/bars/2/products/${id}`, product, config)
+      .then(result => console.log(result))
       .then(() => this.showProducts())
       .then(() => this.setState({ showEditForm: false }));
   };
 
   deleteProduct = id => {
-    axios.delete(`http://localhost:3000/bars/2/products/${id}`);
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
+    axios.delete(`http://localhost:3000/bars/2/products/${id}`, config);
     const newProducts = this.state.displayProducts.filter(
       product => product.id !== id
     );
@@ -94,7 +132,7 @@ export default class Products extends Component {
           />
         ) : null}
 
-        {this.state.displayProducts.length === 0 && <p>Loading products...</p>}
+        {this.state.displayProducts.length === 0 && <p>add products...</p>}
         <table className="table">
           <thead>
             <tr>
