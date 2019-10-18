@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import AddProductForm from "./AddProductForm";
 import EditProductForm from "./EditProductForm";
+import ProductsTable from "./ProductsTable";
 
 export default class Products extends Component {
   state = {
@@ -40,9 +41,9 @@ export default class Products extends Component {
     this.showProducts();
   }
 
-  componentDidUpdate() {
-    this.showProducts();
-  }
+  // componentDidUpdate() {
+  //   this.showProducts();
+  // }
 
   sortProducts = () => {
     let sortedProducts = [];
@@ -133,7 +134,13 @@ export default class Products extends Component {
         ) : null}
 
         {this.state.displayProducts.length === 0 && <p>add products...</p>}
-        <table className="table">
+        <ProductsTable
+          products={this.state.displayProducts}
+          selectedProduct={this.state.selectedProduct}
+          handleEditProductClick={this.handleEditProductClick}
+          deleteProduct={this.deleteProduct}
+        />
+        {/* <table className="table">
           <thead>
             <tr>
               <th scope="col">Category</th>
@@ -165,7 +172,7 @@ export default class Products extends Component {
                 </tr>
               ))}
           </tbody>
-        </table>
+        </table> */}
       </div>
     );
   }

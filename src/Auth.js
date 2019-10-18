@@ -33,7 +33,7 @@ export default class Auth {
 
   setSession = authResult => {
     const expiresAt = JSON.stringify(
-      authResult.expiresIn * 1000 + new Date().getTime()
+      authResult.expiresIn * 10000 + new Date().getTime()
     );
 
     const scopes = authResult.scope || this.requestedScopes || "";

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import AddBarForm from "./AddBarForm";
 import Products from "../products/Products";
+import Menus from "../menus/Menus";
+import Drinks from "../drinks/Drinks";
 
 export default class Bars extends Component {
   state = {
@@ -58,7 +60,7 @@ export default class Bars extends Component {
   };
 
   render() {
-    console.log(this.state.selectedBar);
+    // console.log(this.state.selectedBar);
     return (
       <div className="container">
         {this.state.selectedBar ? null : (
@@ -81,6 +83,12 @@ export default class Bars extends Component {
               ))}
           </>
         )}
+        {this.state.selectedBar ? (
+          <Menus auth={this.props.auth} selectedBar={this.state.selectedBar} />
+        ) : null}
+        {this.state.selectedBar ? (
+          <Drinks auth={this.props.auth} selectedBar={this.state.selectedBar} />
+        ) : null}
 
         {this.state.selectedBar ? (
           <Products
