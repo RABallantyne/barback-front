@@ -4,13 +4,18 @@ import AddBarForm from "./AddBarForm";
 import Products from "../products/Products";
 import Menus from "../menus/Menus";
 import Drinks from "../drinks/Drinks";
+import Bar from "./Bar";
 
 export default class Bars extends Component {
   state = {
     bars: [],
     displayBars: [],
-    selectedBar: null
+    selectedBar: null,
+    showMenus: false,
+    bar: [],
+    showProducts: false
   };
+
   showBars = () => {
     let config = {
       headers: {
@@ -21,6 +26,20 @@ export default class Bars extends Component {
     axios.get("http://localhost:3000/bars", config).then(response => {
       this.setState({ bars: response.data });
     });
+  };
+
+  showBar = () => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
+    axios
+      .get(`http://localhost:3000/bars/${this.state.selectedBar}`, config)
+      .then(response => {
+        this.setState({ bar: response.data });
+      });
   };
 
   componentDidMount() {
@@ -59,8 +78,29 @@ export default class Bars extends Component {
     });
   };
 
+  toggleShowMenus = () => {
+    this.state.showMenus
+      ? this.setState({
+          showMenus: false
+        })
+      : this.setState({
+          showMenus: true,
+          showProducts: false
+        });
+  };
+
+  toggleShowProducts = () => {
+    this.state.showProducts
+      ? this.setState({
+          showProducts: false
+        })
+      : this.setState({
+          showProducts: true,
+          showMenus: false
+        });
+  };
+
   render() {
-    // console.log(this.state.selectedBar);
     return (
       <div className="container">
         {this.state.selectedBar ? null : (
@@ -78,19 +118,32 @@ export default class Bars extends Component {
                   >
                     {bar.barName}
                   </button>
-                  <button onClick={() => this.deleteBar(bar.id)}>delete</button>
+                  {/* <button onClick={() => this.deleteBar(bar.id)}>delete</button> */}
                 </>
               ))}
           </>
         )}
         {this.state.selectedBar ? (
-          <Menus auth={this.props.auth} selectedBar={this.state.selectedBar} />
-        ) : null}
-        {this.state.selectedBar ? (
-          <Drinks auth={this.props.auth} selectedBar={this.state.selectedBar} />
+          <button onClick={() => this.toggleShowMenus()}>Show Menus</button>
         ) : null}
 
         {this.state.selectedBar ? (
+          <button onClick={() => this.toggleShowProducts()}>
+            Show Products
+          </button>
+        ) : null}
+
+        {this.state.showMenus ? (
+          <Menus auth={this.props.auth} selectedBar={this.state.selectedBar} />
+        ) : null}
+
+        {/* {this.state.selectedBar ? (
+          <Drinks auth={this.props.auth} selectedBar={this.state.selectedBar} />
+        ) : null} */}
+
+        {/* <button>View Inventory</button> */}
+
+        {this.state.showProducts ? (
           <Products
             auth={this.props.auth}
             selectedBar={this.state.selectedBar}

@@ -25,7 +25,7 @@ export default class AddDrinkForm extends Component {
   };
   render() {
     return (
-      <div>
+      <div class="container">
         <form onSubmit={this.handleSubmit}>
           <div className="form-row">
             <div className="col">

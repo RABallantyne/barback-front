@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import "./Components.css";
 
 export default class DrinkCard extends Component {
   state = {
@@ -91,7 +90,7 @@ export default class DrinkCard extends Component {
       value: value
     });
 
-    // this.props.drinkValue(value);
+    this.props.addCost(value);
   }
   render() {
     return (

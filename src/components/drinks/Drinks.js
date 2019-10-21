@@ -8,7 +8,8 @@ export default class Drinks extends Component {
     drinks: [],
     selectedDrink: null,
     drink: [],
-    products: []
+    products: [],
+    drinkCost: 0
   };
 
   showDrinks = () => {
@@ -20,37 +21,42 @@ export default class Drinks extends Component {
     };
     axios
       .get(
-        `http://localhost:3000/bars/${this.props.selectedBar}/menus/1/`,
+        `http://localhost:3000/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/`,
         config
       )
       .then(response => {
-        // console.log(response.data);
-        this.setState({ drinks: response.data });
+        console.log(response.data.drinks);
+        this.setState({ drinks: response.data.drinks });
       });
   };
 
-  showDrink = () => {
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
-      }
-    };
-    axios
-      .get(
-        `http://localhost:3000/bars/${this.props.selectedBar}/menus/1/drinks/1`,
-        config
-      )
-      .then(response => {
-        console.log(response.data);
-        this.setState({ products: response.data.products });
-      });
-  };
+  // showDrink = () => {
+  //   let config = {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+  //     }
+  //   };
+  //   axios
+  //     .get(
+  //       `http://localhost:3000/bars/${this.props.selectedBar}/menus/1/drinks/1`,
+  //       config
+  //     )
+  //     .then(response => {
+  //       console.log(response.data);
+  //       // this.setState({ products: response.data.products });
+  //     });
+  // };
 
-  componentDidMount() {
+  componentDidUpdate() {
     this.showDrinks();
-    this.showDrink();
+    // this.showDrink();
   }
+  drinkCost = cost => {
+    this.setState({
+      drinkCost: this.state.drinkCost + parseFloat(cost)
+    });
+  };
   render() {
     return (
       <div>
@@ -64,7 +70,11 @@ export default class Drinks extends Component {
             {/* <button onClick={this.showDrink()}>Details</button> */}
           </>
         ))}
-        <Drink products={this.state.products} />
+        {/* <Drink
+          // addCost={this.drinkCost}
+          products={this.state.products}
+          drinkCost={this.state.drinkCost}
+        /> */}
       </div>
     );
   }

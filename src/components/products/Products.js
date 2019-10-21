@@ -140,39 +140,6 @@ export default class Products extends Component {
           handleEditProductClick={this.handleEditProductClick}
           deleteProduct={this.deleteProduct}
         />
-        {/* <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Category</th>
-              <th scope="col">Name</th>
-              <th scope="col">Size</th>
-              <th scope="col">Price</th>
-              <th scope="col">Options</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.displayProducts &&
-              this.state.displayProducts.map(product => (
-                <tr key={product.id}>
-                  <td>{product.category}</td>
-                  <td>{product.productName}</td>
-                  <td>{product.size}</td>
-                  <td>${parseFloat(product.price).toFixed(2)}</td>
-                  <td>
-                    <button
-                      onClick={() => this.handleEditProductClick(product)}
-                    >
-                      Edit
-                    </button>
-
-                    <button onClick={() => this.deleteProduct(product.id)}>
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table> */}
       </div>
     );
   }
