@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class DrinkCard extends Component {
+export default class IngredientCard extends Component {
   state = {
     value: 0,
     margin: 0
@@ -90,14 +90,16 @@ export default class DrinkCard extends Component {
       value: value
     });
 
-    this.props.addCost(value);
+    this.props.drinkCost(value);
   }
   render() {
+    // console.log(this.props);
     return (
       <div>
         <p>
           {this.props.product.quantity} {this.props.product.productName}{" "}
           <span className="ing-cost">cost: ${this.state.value}</span>{" "}
+          <button>delete</button>
         </p>
       </div>
     );

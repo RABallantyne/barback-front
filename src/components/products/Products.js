@@ -79,7 +79,11 @@ export default class Products extends Component {
       }
     };
     axios
-      .patch(`http://localhost:3000/bars/2/products/${id}`, product, config)
+      .patch(
+        `http://localhost:3000/bars/${this.props.selectedBar}/products/${id}`,
+        product,
+        config
+      )
       .then(result => console.log(result))
       .then(() => this.showProducts())
       .then(() => this.setState({ showEditForm: false }));
@@ -92,7 +96,10 @@ export default class Products extends Component {
         Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
-    axios.delete(`http://localhost:3000/bars/2/products/${id}`, config);
+    axios.delete(
+      `http://localhost:3000/bars/${this.props.selectedBar}/products/${id}`,
+      config
+    );
     const newProducts = this.state.displayProducts.filter(
       product => product.id !== id
     );

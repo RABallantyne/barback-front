@@ -1,12 +1,15 @@
 .menu-container {
-  /* display: flex; */
-  /* flex-direction: row; */
+  display: flex;
+  flex-direction: column;
   border: solid black 2px;
   padding: 5px;
   margin: 5px;
   border-radius: 10px;
+  align-items: left;
 }
 
 .menu-group {
   display: flex;
+  /* flex-direction: column; */
+  justify-content: left;
 }

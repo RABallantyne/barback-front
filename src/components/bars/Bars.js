@@ -3,8 +3,9 @@ import axios from "axios";
 import AddBarForm from "./AddBarForm";
 import Products from "../products/Products";
 import Menus from "../menus/Menus";
-import Drinks from "../drinks/Drinks";
-import Bar from "./Bar";
+import "./Bars.css";
+// import Drinks from "../drinks/Drinks";
+// import Bar from "./Bar";
 
 export default class Bars extends Component {
   state = {
@@ -133,9 +134,15 @@ export default class Bars extends Component {
           </button>
         ) : null}
 
-        {this.state.showMenus ? (
-          <Menus auth={this.props.auth} selectedBar={this.state.selectedBar} />
-        ) : null}
+        <div className="menus-container">
+          {this.state.showMenus ? (
+            <Menus
+              auth={this.props.auth}
+              selectedBar={this.state.selectedBar}
+              toggleShowMenus={this.toggleShowMenus}
+            />
+          ) : null}
+        </div>
 
         {/* {this.state.selectedBar ? (
           <Drinks auth={this.props.auth} selectedBar={this.state.selectedBar} />

@@ -16,7 +16,7 @@ export default class AddDrinkForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // this.props.addDrink(this.state);
+    this.props.addDrink(this.state);
     this.setState({
       drinkName: "",
       drinkNote: "",

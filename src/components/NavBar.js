@@ -14,6 +14,22 @@ function NavBar(props) {
           </li>
         )}
 
+        {isAuthenticated() && (
+          <li className="nav">
+            <Link className="nav-link" to="/bars">
+              Bars
+            </Link>
+          </li>
+        )}
+
+        {isAuthenticated() && (
+          <li className="nav">
+            <Link className="nav-link" to="/products">
+              Products
+            </Link>
+          </li>
+        )}
+
         <li>
           <button
             className="nav-item"
