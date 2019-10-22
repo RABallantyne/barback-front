@@ -99,7 +99,14 @@ export default class IngredientCard extends Component {
         <p>
           {this.props.product.quantity} {this.props.product.productName}{" "}
           <span className="ing-cost">cost: ${this.state.value}</span>{" "}
-          <button>delete</button>
+          <button
+            onClick={() => {
+              console.log(this.props.productDrinkId.id);
+              this.props.removeFromDrink(this.props.productDrinkId.id);
+            }}
+          >
+            delete
+          </button>
         </p>
       </div>
     );

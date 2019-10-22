@@ -3,6 +3,7 @@ import axios from "axios";
 import AddDrinkForm from "./AddDrinkForm";
 import Drink from "../drink/Drink";
 import "./Drinks.css";
+import EditDrinkForm from "./EditDrinkForm";
 
 export default class Drinks extends Component {
   state = {
@@ -13,7 +14,9 @@ export default class Drinks extends Component {
     drinkCost: 0,
     drinkName: "",
     showDrink: false,
-    margin: 0
+    margin: 0,
+    drinkNote: "",
+    products_drinks: []
   };
 
   showDrink = drinkId => {
@@ -23,7 +26,9 @@ export default class Drinks extends Component {
       drinkCost: 0,
       selectedDrink: null,
       showDrink: false,
-      margin: 0
+      margin: 0,
+      drinkNote: "",
+      products_drinks: []
     });
     let config = {
       headers: {
@@ -33,22 +38,39 @@ export default class Drinks extends Component {
     };
     axios
       .get(
-        `http://localhost:3000/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/drinks/${drinkId}`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/drinks/${drinkId}`,
         config
       )
       .then(response => {
-        console.log(response.data);
         setTimeout(() => {
           this.setState({
             products: response.data.products,
+            products_drinks: response.data.products_drinks,
             drinkName: response.data.drinkName,
             drinkCost: 0,
             selectedDrink: response.data.id,
             showDrink: true,
-            margin: response.data.margin
+            margin: response.data.margin,
+            drinkNote: response.data.drinkNote
           });
         });
       });
+  };
+
+  editDrink = (drink, id) => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
+    axios
+      .patch(
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/drinks/${id}`,
+        drink,
+        config
+      )
+      .then(() => this.showDrink());
   };
 
   drinkCost = cost => {
@@ -72,6 +94,15 @@ export default class Drinks extends Component {
           ))}
         </div>
         {this.state.showDrink ? (
+          <EditDrinkForm
+            editDrink={this.editDrink}
+            drinkName={this.state.drinkName}
+            drinkNote={this.state.drinkNote}
+            margin={this.state.margin}
+            selectedDrink={this.state.selectedDrink}
+          />
+        ) : null}
+        {this.state.showDrink ? (
           <Drink
             drinkName={this.state.drinkName}
             addCost={this.drinkCost}
@@ -83,9 +114,11 @@ export default class Drinks extends Component {
             selectedMenu={this.props.selectedMenu}
             showDrink={this.showDrink}
             margin={this.state.margin}
+            drinkNote={this.state.drinkNote}
+            products_drinks={this.state.products_drinks}
           />
         ) : null}{" "}
-        {console.log(this.props.products_drinks)}
+        {/* {console.log(this.props.products_drinks)} */}
       </div>
     );
   }

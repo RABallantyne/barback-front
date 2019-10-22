@@ -32,7 +32,7 @@ class App extends Component {
           path="/bars"
           render={props =>
             this.auth.isAuthenticated() ? (
-              <Bars auth={this.auth} {...props} />
+              <Bars key={Math.random()} auth={this.auth} {...props} />
             ) : (
               this.auth.login()
             )

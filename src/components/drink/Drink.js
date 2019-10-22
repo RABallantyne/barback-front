@@ -18,13 +18,9 @@ export default class Drink extends Component {
     }, 0);
 
     this.setState({
-      drinkCost: total
+      drinkCost: parseFloat(total).toFixed(2)
     });
   };
-
-  products = this.props.products.map(product => (
-    <IngredientCard product={product} drinkCost={this.drinkCost} />
-  ));
 
   toggleIngredients = () => {
     this.state.showIngredients
@@ -37,7 +33,6 @@ export default class Drink extends Component {
   };
 
   addToDrink = (products_id, quantity) => {
-    console.log(products_id, quantity);
     let config = {
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +41,7 @@ export default class Drink extends Component {
     };
     axios
       .post(
-        `http://localhost:3000/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/drinks/${this.props.selectedDrink}`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/drinks/${this.props.selectedDrink}`,
 
         { products_id, quantity },
         config
@@ -58,16 +53,50 @@ export default class Drink extends Component {
     });
   };
 
+  removeFromDrink = productDrinkId => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
+    axios
+      .delete(
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/drinks/${this.props.selectedDrink}/${productDrinkId}`,
+        config
+      )
+      .then(() => this.props.showDrink(this.props.selectedDrink));
+  };
+
+  products = this.props.products.map(product => {
+    const productDrinkId = this.props.products_drinks.find(
+      productDrink => productDrink.products_id === product.id
+    );
+    console.log("hit", this.removeFromDrink);
+    return (
+      <IngredientCard
+        product={product}
+        drinkCost={this.drinkCost}
+        removeFromDrink={this.removeFromDrink}
+        productDrinkId={productDrinkId}
+      />
+    );
+  });
+
   render() {
-    console.log(this.props);
+    console.log(this.props.products_drinks);
     return this.props.selectedDrink != null ? (
       <div className="drink-container">
         <h1>{this.props.drinkName}</h1>
+        <h2>{this.props.drinkNote}</h2>
+        <h3>Margin: {this.props.margin}%</h3>
         {this.products}
         <h2>Drink Cost: ${this.state.drinkCost}</h2>
         <h2>
-          Suggested Price: $
-          {(this.state.drinkCost * (this.props.margin / 10)) / 1}
+          Suggested Price : $
+          {parseFloat(this.state.drinkCost / (this.props.margin / 100)).toFixed(
+            2
+          )}
         </h2>
 
         <button onClick={() => this.toggleIngredients()}>

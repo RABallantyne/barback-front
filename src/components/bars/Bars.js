@@ -24,9 +24,11 @@ export default class Bars extends Component {
         Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
-    axios.get("http://localhost:3000/bars", config).then(response => {
-      this.setState({ bars: response.data });
-    });
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/bars`, config)
+      .then(response => {
+        this.setState({ bars: response.data });
+      });
   };
 
   showBar = () => {
@@ -37,7 +39,10 @@ export default class Bars extends Component {
       }
     };
     axios
-      .get(`http://localhost:3000/bars/${this.state.selectedBar}`, config)
+      .get(
+        `${process.env.REACT_APP_API_URL}/bars/${this.state.selectedBar}`,
+        config
+      )
       .then(response => {
         this.setState({ bar: response.data });
       });
@@ -55,7 +60,7 @@ export default class Bars extends Component {
       }
     };
     axios
-      .post("http://localhost:3000/bars", bar, config)
+      .post(`${process.env.REACT_APP_API_URL}/bars`, bar, config)
       .then(() => this.showBars());
   };
 
@@ -66,7 +71,7 @@ export default class Bars extends Component {
         Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
-    axios.delete(`http://localhost:3000/bars/${id}`, config);
+    axios.delete(`${process.env.REACT_APP_API_URL}/bars/${id}`, config);
     const newBars = this.state.bars.filter(bar => bar.id !== id);
     this.setState({
       bars: newBars

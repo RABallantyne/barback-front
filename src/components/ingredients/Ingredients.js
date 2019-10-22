@@ -21,7 +21,7 @@ export default class Ingredients extends Component {
 
     axios
       .get(
-        `http://localhost:3000/bars/${this.props.selectedBar}/products`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/products`,
         config
       )
       .then(response => {
@@ -38,10 +38,6 @@ export default class Ingredients extends Component {
   componentDidMount() {
     this.showProducts();
   }
-
-  // componentDidUpdate() {
-  //   this.showProducts();
-  // }
 
   sortProducts = () => {
     let sortedProducts = [];

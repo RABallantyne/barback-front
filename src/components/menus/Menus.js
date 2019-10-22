@@ -22,7 +22,10 @@ export default class Menus extends Component {
       }
     };
     axios
-      .get(`http://localhost:3000/bars/${this.props.selectedBar}/menus`, config)
+      .get(
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus`,
+        config
+      )
       .then(response => {
         this.setState({ menus: response.data });
       });
@@ -41,7 +44,7 @@ export default class Menus extends Component {
     };
     axios
       .get(
-        `http://localhost:3000/bars/${this.props.selectedBar}/menus/${this.state.selectedMenu}/`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.state.selectedMenu}/`,
         config
       )
       .then(response => {
@@ -59,7 +62,7 @@ export default class Menus extends Component {
     };
     axios
       .post(
-        `http://localhost:3000/bars/${this.props.selectedBar}/menus/${this.state.selectedMenu}/drinks`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.state.selectedMenu}/drinks`,
         drink,
         config
       )
@@ -75,7 +78,7 @@ export default class Menus extends Component {
     };
     axios
       .post(
-        `http://localhost:3000/bars/${this.props.selectedBar}/menus`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus`,
         menu,
         config
       )
@@ -118,7 +121,7 @@ export default class Menus extends Component {
         ) : null}
         <div className="menu-group">
           {this.state.menus.map(menu => (
-            <div className="menu-container">
+            <div key={menu.id} className="menu-container">
               <h2>{menu.menuName}</h2>
               <h4>{menu.menuNote}</h4>
 
@@ -142,8 +145,6 @@ export default class Menus extends Component {
             showDrinks={this.showDrinks}
           />
         ) : null}
-
-        {console.log(this.state.selectedMenu)}
       </div>
     );
   }

@@ -1,11 +1,29 @@
 import React, { Component } from "react";
 
-export default class AddDrinkForm extends Component {
+export default class EditDrinkForm extends Component {
   state = {
     drinkName: "",
     drinkNote: "",
     margin: ""
   };
+
+  componentDidMount() {
+    this.setState({
+      drinkName: this.props.drinkName,
+      drinkNote: this.props.drinkNote,
+      margin: this.props.margin
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.selectedDrink.id !== prevProps.selectedDrink.id) {
+      this.setState({
+        drinkName: this.props.drinkName,
+        drinkNote: this.props.drinkNote,
+        margin: this.props.margin
+      });
+    }
+  }
 
   handleChange = event => {
     const { name, value } = event.target;
@@ -16,12 +34,7 @@ export default class AddDrinkForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.addDrink(this.state);
-    this.setState({
-      drinkName: "",
-      drinkNote: "",
-      margin: ""
-    });
+    this.props.editDrink(this.state, this.props.selectedDrink);
   };
   render() {
     return (
@@ -58,7 +71,7 @@ export default class AddDrinkForm extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button className="btn btn-primary">Add drink</button>
+            <button className="btn btn-primary">Edit drink</button>
           </div>
         </form>
       </div>

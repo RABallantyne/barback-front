@@ -23,7 +23,7 @@ export default class Products extends Component {
 
     axios
       .get(
-        `http://localhost:3000/bars/${this.props.selectedBar}/products`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/products`,
         config
       )
       .then(response => {
@@ -62,7 +62,7 @@ export default class Products extends Component {
     };
     axios
       .post(
-        `http://localhost:3000/bars/${this.props.selectedBar}/products`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/products`,
         product,
         config
       )
@@ -80,7 +80,7 @@ export default class Products extends Component {
     };
     axios
       .patch(
-        `http://localhost:3000/bars/${this.props.selectedBar}/products/${id}`,
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/products/${id}`,
         product,
         config
       )
@@ -97,7 +97,7 @@ export default class Products extends Component {
       }
     };
     axios.delete(
-      `http://localhost:3000/bars/${this.props.selectedBar}/products/${id}`,
+      `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/products/${id}`,
       config
     );
     const newProducts = this.state.displayProducts.filter(
