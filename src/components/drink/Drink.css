@@ -1,12 +1,31 @@
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
 .drink-container {
+  animation: 1s ease-out 0s 1 slideInFromLeft;
   /* display: flex; */
   /* flex-direction: row; */
   border: solid black 2px;
   padding: 5px;
   margin: 5px;
   border-radius: 10px;
+  transition: width 100s;
 }
 
 .drink-group {
   display: flex;
+}
+
+.ingredient-card {
+  font-weight: bold;
+}
+
+.ing-cost {
+  margin: 0px 5px 0px 5px;
+  font-weight: normal;
 }

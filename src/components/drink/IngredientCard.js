@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Drink.css";
 
 export default class IngredientCard extends Component {
   state = {
@@ -96,9 +97,10 @@ export default class IngredientCard extends Component {
     // console.log(this.props);
     return (
       <div>
-        <p>
-          {this.props.product.quantity} {this.props.product.productName}{" "}
-          <span className="ing-cost">cost: ${this.state.value}</span>{" "}
+        <p className="ingredient-card">
+          {this.props.product.quantity} {this.props.product.productName}
+          {"  "}
+          <span className="ing-cost">Cost: ${this.state.value}</span>{" "}
           <button
             onClick={() => {
               this.props.removeFromDrink(this.props.productDrinkId.id);
