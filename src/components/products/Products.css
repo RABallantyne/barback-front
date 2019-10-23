@@ -10,3 +10,21 @@
 button {
   margin: 0px 10px 0px 10px;
 }
+
+.search-filter {
+  display: flex;
+  justify-content: space-around;
+  margin: 10px;
+  padding: 5px;
+}
+.search-bar {
+  display: flex;
+}
+
+label.filter-title {
+  font-weight: bold;
+}
+
+table {
+  font-weight: bold;
+}

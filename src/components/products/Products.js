@@ -163,7 +163,7 @@ export default class Products extends Component {
     return (
       <div className="products-container">
         <h1>Product Inventory</h1>
-        <div>
+        <div className="search-filter">
           <ProductFilter filter={this.filterByCategory} />
           <ProductSearch search={this.setSearchFilter} />
         </div>

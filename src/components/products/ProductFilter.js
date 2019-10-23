@@ -1,10 +1,11 @@
 import React from "react";
+import "./Products.css";
 
 export default function ProductFilter(props) {
   return (
     <div className="form-item">
       <label>
-        <label className="filter-label">Filter by Product Type:</label>
+        <label className="filter-title">Filter by Product Type:</label>
         <select onChange={event => props.filter(event.target.value)}>
           <option value="All">All</option>
           <option value="Agave">Agave</option>

@@ -110,7 +110,7 @@ export default class Drinks extends Component {
           {this.props.drinks.map(drink => (
             <div key={drink.id} className="drink-container">
               <h2>{drink.drinkName}</h2>
-              <h3>{drink.drinkNote}</h3>
+              {/* <h3>{drink.drinkNote}</h3> */}
               <button onClick={() => this.showDrink(drink.id)}>Details</button>
             </div>
           ))}

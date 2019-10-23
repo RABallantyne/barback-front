@@ -94,16 +94,16 @@ export default class Ingredients extends Component {
     return (
       <div className="ings-container">
         {this.state.displayProducts.length === 0 && <p>add products...</p>}
-        <div>
+        <div className="search-filter">
           <IngredientFilter filter={this.filterByCategory} />
           <IngredientSearch search={this.setSearchFilter} />
         </div>
         {/* <div className="ings-container"> */}
-          <IngredientTable
-            products={this.state.displayProducts}
-            selectedProduct={this.state.selectedProduct}
-            addToDrink={this.props.addToDrink}
-          />
+        <IngredientTable
+          products={this.state.displayProducts}
+          selectedProduct={this.state.selectedProduct}
+          addToDrink={this.props.addToDrink}
+        />
         {/* </div> */}
       </div>
     );

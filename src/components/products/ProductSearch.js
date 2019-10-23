@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Products.css";
 
 export default class ProductSearch extends Component {
   state = {
@@ -17,13 +18,14 @@ export default class ProductSearch extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="search-bar">
+        <h5>Search by product name:</h5>
         <form onSubmit={this.handleSubmit}>
           <input
             className="form-item"
             type="text"
             name="input"
-            placeholder="Search by Product Name"
+            placeholder="Search"
             value={this.state.input}
             onChange={this.handleChange}
           />
