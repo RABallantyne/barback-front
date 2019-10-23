@@ -57,6 +57,21 @@ export default class Drinks extends Component {
       });
   };
 
+  deleteDrink = drink => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
+    axios
+      .delete(
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/drinks/${drink}`,
+        config
+      )
+      .then(() => this.props.showDrinks());
+  };
+
   editDrink = (drink, id) => {
     let config = {
       headers: {
@@ -123,6 +138,7 @@ export default class Drinks extends Component {
             margin={this.state.margin}
             drinkNote={this.state.drinkNote}
             products_drinks={this.state.products_drinks}
+            deleteDrink={this.deleteDrink}
           />
         ) : null}{" "}
         {/* {console.log(this.props.products_drinks)} */}

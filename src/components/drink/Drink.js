@@ -8,7 +8,8 @@ export default class Drink extends Component {
   state = {
     showIngredients: false,
     totalCost: [],
-    drinkCost: 0
+    drinkCost: 0,
+    products: []
   };
 
   drinkCost = cost => {
@@ -87,6 +88,15 @@ export default class Drink extends Component {
   render() {
     return this.props.selectedDrink != null ? (
       <div className="drink-container">
+        {this.products.length === 0 ? (
+          <button
+            onClick={() => {
+              this.props.deleteDrink(this.props.selectedDrink);
+            }}
+          >
+            Delete Drink
+          </button>
+        ) : null}
         <h1>{this.props.drinkName}</h1>
         <h2>{this.props.drinkNote}</h2>
         <h3>Margin: {this.props.margin}%</h3>

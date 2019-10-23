@@ -3,12 +3,13 @@
   /* flex-direction: row; */
   border: solid black 2px;
   padding: 5px;
-  margin: 5px;
+  margin: 40px;
   border-radius: 10px;
 }
 
 .drinks-group {
   display: flex;
+  justify-content: center;
 }
 
 .drink-container {

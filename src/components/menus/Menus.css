@@ -3,6 +3,8 @@
   padding: 5px;
   margin: 5px;
   border-radius: 10px;
+  /* display: flex; */
+  justify-content: center;
 }
 
 .menu-group {

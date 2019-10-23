@@ -3,6 +3,7 @@ import axios from "axios";
 import IngredientSearch from "./IngredientSearch";
 import IngredientFilter from "./IngredientFilter";
 import IngredientTable from "./IngredientTable";
+import "./Ingredients.css";
 
 export default class Ingredients extends Component {
   state = {
@@ -91,17 +92,19 @@ export default class Ingredients extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="ings-container">
         {this.state.displayProducts.length === 0 && <p>add products...</p>}
         <div>
           <IngredientFilter filter={this.filterByCategory} />
           <IngredientSearch search={this.setSearchFilter} />
         </div>
-        <IngredientTable
-          products={this.state.displayProducts}
-          selectedProduct={this.state.selectedProduct}
-          addToDrink={this.props.addToDrink}
-        />
+        {/* <div className="ings-container"> */}
+          <IngredientTable
+            products={this.state.displayProducts}
+            selectedProduct={this.state.selectedProduct}
+            addToDrink={this.props.addToDrink}
+          />
+        {/* </div> */}
       </div>
     );
   }

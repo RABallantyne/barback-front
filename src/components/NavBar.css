@@ -2,7 +2,7 @@
   margin: 0px;
 }
 
-.navigation {
+/* .navigation {
   display: flex;
   flex-wrap: wrap;
   -webkit-box-align: center;
@@ -11,7 +11,7 @@
   justify-content: space-between;
   padding: 0.5rem 0.5rem;
   position: absolute;
-}
+} */
 
 .title {
   font-style: italic;

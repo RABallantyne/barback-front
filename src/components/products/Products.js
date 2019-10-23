@@ -118,7 +118,7 @@ export default class Products extends Component {
         product,
         config
       )
-      .then(result => console.log(result))
+
       .then(() => this.showProducts())
       .then(() => this.setState({ showEditForm: false }));
   };
