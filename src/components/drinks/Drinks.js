@@ -115,7 +115,7 @@ export default class Drinks extends Component {
             </div>
           ))}
         </div>
-        {this.state.showDrink ? (
+        {/* {this.state.showDrink ? (
           <EditDrinkForm
             editDrink={this.editDrink}
             drinkName={this.state.drinkName}
@@ -123,23 +123,33 @@ export default class Drinks extends Component {
             margin={this.state.margin}
             selectedDrink={this.state.selectedDrink}
           />
-        ) : null}
+        ) : null} */}
         {this.state.showDrink ? (
-          <Drink
-            drinkName={this.state.drinkName}
-            addCost={this.drinkCost}
-            products={this.state.products}
-            drinkCost={this.state.drinkCost}
-            selectedDrink={this.state.selectedDrink}
-            auth={this.props.auth}
-            selectedBar={this.props.selectedBar}
-            selectedMenu={this.props.selectedMenu}
-            showDrink={this.showDrink}
-            margin={this.state.margin}
-            drinkNote={this.state.drinkNote}
-            products_drinks={this.state.products_drinks}
-            deleteDrink={this.deleteDrink}
-          />
+          <div>
+            <EditDrinkForm
+              editDrink={this.editDrink}
+              drinkName={this.state.drinkName}
+              drinkNote={this.state.drinkNote}
+              margin={this.state.margin}
+              selectedDrink={this.state.selectedDrink}
+            />
+
+            <Drink
+              drinkName={this.state.drinkName}
+              addCost={this.drinkCost}
+              products={this.state.products}
+              drinkCost={this.state.drinkCost}
+              selectedDrink={this.state.selectedDrink}
+              auth={this.props.auth}
+              selectedBar={this.props.selectedBar}
+              selectedMenu={this.props.selectedMenu}
+              showDrink={this.showDrink}
+              margin={this.state.margin}
+              drinkNote={this.state.drinkNote}
+              products_drinks={this.state.products_drinks}
+              deleteDrink={this.deleteDrink}
+            />
+          </div>
         ) : null}{" "}
         {/* {console.log(this.props.products_drinks)} */}
       </div>
