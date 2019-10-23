@@ -81,12 +81,19 @@ export default class Drinks extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Drinks</h1>
+      <div className="drinks-container">
+        <h1>{this.props.menuName}</h1>
+        {this.props.drinks.length === 0 ? (
+          <button
+            onClick={() => this.props.deleteMenu(this.props.selectedMenu)}
+          >
+            delete menu
+          </button>
+        ) : null}
         <AddDrinkForm addDrink={this.props.addDrink} />
         <div className="drinks-group">
           {this.props.drinks.map(drink => (
-            <div className="drinks-container">
+            <div key={drink.id} className="drink-container">
               <h2>{drink.drinkName}</h2>
               <h3>{drink.drinkNote}</h3>
               <button onClick={() => this.showDrink(drink.id)}>Details</button>

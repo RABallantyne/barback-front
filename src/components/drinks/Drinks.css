@@ -10,3 +10,10 @@
 .drinks-group {
   display: flex;
 }
+
+.drink-container {
+  border: solid black 2px;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 10px;
+}

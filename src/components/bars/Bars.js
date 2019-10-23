@@ -4,8 +4,6 @@ import AddBarForm from "./AddBarForm";
 import Products from "../products/Products";
 import Menus from "../menus/Menus";
 import "./Bars.css";
-// import Drinks from "../drinks/Drinks";
-// import Bar from "./Bar";
 
 export default class Bars extends Component {
   state = {
@@ -108,9 +106,9 @@ export default class Bars extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="main-container">
         {this.state.selectedBar ? null : (
-          <>
+          <div className="bars-selection">
             <h1>Your Bars</h1>
             <AddBarForm addBar={this.addBar} />
 
@@ -119,6 +117,7 @@ export default class Bars extends Component {
               this.state.bars.map(bar => (
                 <>
                   <button
+                    className="barbutton"
                     onClick={() => this.handleBarSelect(bar)}
                     key={bar.id}
                   >
@@ -127,17 +126,27 @@ export default class Bars extends Component {
                   {/* <button onClick={() => this.deleteBar(bar.id)}>delete</button> */}
                 </>
               ))}
-          </>
+          </div>
         )}
-        {this.state.selectedBar ? (
-          <button onClick={() => this.toggleShowMenus()}>Show Menus</button>
-        ) : null}
+        <div className="nav-buttons-container">
+          {this.state.selectedBar ? (
+            <button
+              className={"navbutton"}
+              onClick={() => this.toggleShowMenus()}
+            >
+              Menus
+            </button>
+          ) : null}
 
-        {this.state.selectedBar ? (
-          <button onClick={() => this.toggleShowProducts()}>
-            Show Products
-          </button>
-        ) : null}
+          {this.state.selectedBar ? (
+            <button
+              className={"navbutton"}
+              onClick={() => this.toggleShowProducts()}
+            >
+              Products
+            </button>
+          ) : null}
+        </div>
 
         <div className="menus-container">
           {this.state.showMenus ? (
@@ -148,19 +157,14 @@ export default class Bars extends Component {
             />
           ) : null}
         </div>
-
-        {/* {this.state.selectedBar ? (
-          <Drinks auth={this.props.auth} selectedBar={this.state.selectedBar} />
-        ) : null} */}
-
-        {/* <button>View Inventory</button> */}
-
-        {this.state.showProducts ? (
-          <Products
-            auth={this.props.auth}
-            selectedBar={this.state.selectedBar}
-          />
-        ) : null}
+        <div className="products-container">
+          {this.state.showProducts ? (
+            <Products
+              auth={this.props.auth}
+              selectedBar={this.state.selectedBar}
+            />
+          ) : null}
+        </div>
       </div>
     );
   }

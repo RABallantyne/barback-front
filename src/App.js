@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
-import Products from "./components/products/Products";
 import Home from "./components/home/Home";
 import Bars from "./components/bars/Bars";
 import Auth from "./Auth";
@@ -33,17 +32,6 @@ class App extends Component {
           render={props =>
             this.auth.isAuthenticated() ? (
               <Bars key={Math.random()} auth={this.auth} {...props} />
-            ) : (
-              this.auth.login()
-            )
-          }
-        />
-
-        <Route
-          path="/products"
-          render={props =>
-            this.auth.isAuthenticated() ? (
-              <Products auth={this.auth} {...props} />
             ) : (
               this.auth.login()
             )

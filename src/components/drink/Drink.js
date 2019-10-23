@@ -72,9 +72,10 @@ export default class Drink extends Component {
     const productDrinkId = this.props.products_drinks.find(
       productDrink => productDrink.products_id === product.id
     );
-    console.log("hit", this.removeFromDrink);
+
     return (
       <IngredientCard
+        key={product.id}
         product={product}
         drinkCost={this.drinkCost}
         removeFromDrink={this.removeFromDrink}
@@ -84,7 +85,6 @@ export default class Drink extends Component {
   });
 
   render() {
-    console.log(this.props.products_drinks);
     return this.props.selectedDrink != null ? (
       <div className="drink-container">
         <h1>{this.props.drinkName}</h1>
@@ -99,9 +99,7 @@ export default class Drink extends Component {
           )}
         </h2>
 
-        <button onClick={() => this.toggleIngredients()}>
-          add ingredients
-        </button>
+        <button onClick={() => this.toggleIngredients()}>add ingredient</button>
         {this.state.showIngredients ? (
           <Ingredients
             auth={this.props.auth}

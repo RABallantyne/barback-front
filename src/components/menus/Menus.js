@@ -11,7 +11,9 @@ export default class Menus extends Component {
     selectedMenu: null,
     menu: [],
     drinks: [],
-    displayDrinks: false
+    displayDrinks: false,
+    displayMenus: false,
+    menuName: ""
   };
 
   showMenus = () => {
@@ -27,7 +29,7 @@ export default class Menus extends Component {
         config
       )
       .then(response => {
-        this.setState({ menus: response.data });
+        this.setState({ menus: response.data, displayMenus: true });
       });
   };
 
@@ -48,7 +50,6 @@ export default class Menus extends Component {
         config
       )
       .then(response => {
-        console.log(response.data.drinks);
         this.setState({ drinks: response.data.drinks });
       });
   };
@@ -87,6 +88,21 @@ export default class Menus extends Component {
       .then(() => this.setState({ showAddMenus: false }));
   };
 
+  deleteMenu = menu => {
+    let config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+      }
+    };
+    axios
+      .delete(
+        `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${menu}`,
+        config
+      )
+      .then(() => this.showMenus());
+  };
+
   toggleAddMenu = () => {
     this.state.showAddMenus
       ? this.setState({
@@ -100,7 +116,9 @@ export default class Menus extends Component {
   setMenu = menu => {
     // this.props.toggleShowMenus();
     this.setState({
-      selectedMenu: menu.id
+      selectedMenu: menu.id,
+      displayMenus: false,
+      menuName: menu.menuName
     });
     setTimeout(() => {
       this.showDrinks();
@@ -110,31 +128,36 @@ export default class Menus extends Component {
   render() {
     return (
       <div>
-        <h1>Menus</h1>
-
-        <button onClick={() => this.toggleAddMenu()}>New Menu</button>
-        {this.state.showAddMenus ? (
-          <AddMenuForm
-            addMenu={this.addMenu}
-            selectedBar={this.props.selectedBar}
-          />
+        {this.state.displayMenus ? (
+          <div>
+            <h1>Menus</h1>
+            <button onClick={() => this.toggleAddMenu()}>New Menu</button>
+            {this.state.showAddMenus ? (
+              <AddMenuForm
+                addMenu={this.addMenu}
+                selectedBar={this.props.selectedBar}
+              />
+            ) : null}
+          </div>
         ) : null}
-        <div className="menu-group">
-          {this.state.menus.map(menu => (
-            <div key={menu.id} className="menu-container">
-              <h2>{menu.menuName}</h2>
-              <h4>{menu.menuNote}</h4>
+        {this.state.displayMenus ? (
+          <div className="menu-group">
+            {this.state.menus.map(menu => (
+              <div key={menu.id} className="menu-container">
+                <h2>{menu.menuName}</h2>
+                <h4>{menu.menuNote}</h4>
 
-              <button
-                onClick={() => {
-                  this.setMenu(menu);
-                }}
-              >
-                View Menu
-              </button>
-            </div>
-          ))}
-        </div>
+                <button
+                  onClick={() => {
+                    this.setMenu(menu);
+                  }}
+                >
+                  View Menu
+                </button>
+              </div>
+            ))}
+          </div>
+        ) : null}
         {this.state.selectedMenu ? (
           <Drinks
             addDrink={this.addDrink}
@@ -143,6 +166,8 @@ export default class Menus extends Component {
             drinks={this.state.drinks}
             auth={this.props.auth}
             showDrinks={this.showDrinks}
+            deleteMenu={this.deleteMenu}
+            menuName={this.state.menuName}
           />
         ) : null}
       </div>

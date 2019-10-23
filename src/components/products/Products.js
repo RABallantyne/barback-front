@@ -3,6 +3,9 @@ import axios from "axios";
 import AddProductForm from "./AddProductForm";
 import EditProductForm from "./EditProductForm";
 import ProductsTable from "./ProductsTable";
+import ProductFilter from "./ProductFilter";
+import ProductSearch from "./ProductSearch";
+import "./Products.css";
 
 export default class Products extends Component {
   state = {
@@ -10,7 +13,8 @@ export default class Products extends Component {
     displayProducts: [],
     showAddForm: false,
     showEditForm: false,
-    selectedProduct: null
+    selectedProduct: null,
+    searchFilter: ""
   };
 
   showProducts = () => {
@@ -41,9 +45,39 @@ export default class Products extends Component {
     this.showProducts();
   }
 
-  // componentDidUpdate() {
-  //   this.showProducts();
-  // }
+  filterByCategory = category => {
+    if (category !== "All") {
+      this.setState({
+        displayProducts: this.state.products.filter(
+          prod => prod.category === category
+        )
+      });
+    } else {
+      this.setState({
+        displayProducts: this.state.products
+      });
+    }
+  };
+
+  setSearchFilter = searchFilter => {
+    this.setState(
+      {
+        searchFilter: searchFilter
+      },
+      () => {
+        this.search();
+      }
+    );
+  };
+
+  search = () => {
+    let displayProducts = this.state.products.filter(prod => {
+      return prod.productName
+        .toLowerCase()
+        .includes(this.state.searchFilter.toLowerCase());
+    });
+    this.setState({ displayProducts });
+  };
 
   sortProducts = () => {
     let sortedProducts = [];
@@ -127,8 +161,12 @@ export default class Products extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="products-container">
         <h1>Product Inventory</h1>
+        <div>
+          <ProductFilter filter={this.filterByCategory} />
+          <ProductSearch search={this.setSearchFilter} />
+        </div>
         <button onClick={() => this.toggleAddForm()}>Add Product</button>
         {this.state.showAddForm ? (
           <AddProductForm addProduct={this.addProduct} />
