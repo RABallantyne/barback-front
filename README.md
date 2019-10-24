@@ -14,10 +14,12 @@ Once your products are in your inventory its time to start making cocktails!
 Add a menu with a name and note.
 Add a drink to the menu.
 Drinks need a name, a note, and a desired margin.
-Click the details button and then the add ingredient button.
+Click the details button and then add ingredient button.
 
 Feel free to add as many ingredients as your drink needs. The cost and margin will be automatically adjusted.
 
 You can also delete ingredients from your cocktail.
 
 You can add as many drinks as you want!
+
+Drinks can be deleted if there are no ingredients, menus can be deleted if there are no drinks.

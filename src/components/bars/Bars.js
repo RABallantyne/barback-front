@@ -110,7 +110,6 @@ export default class Bars extends Component {
         {this.state.selectedBar ? null : (
           <div className="bars-selection">
             <h1>Your Bars</h1>
-            <AddBarForm addBar={this.addBar} />
 
             {this.state.bars.length === 0 && <p>Add a bar to continue...</p>}
             {this.state.bars &&
@@ -126,6 +125,7 @@ export default class Bars extends Component {
                   {/* <button onClick={() => this.deleteBar(bar.id)}>delete</button> */}
                 </>
               ))}
+            <AddBarForm addBar={this.addBar} />
           </div>
         )}
         <div className="nav-buttons-container">
