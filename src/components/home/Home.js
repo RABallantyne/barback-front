@@ -11,7 +11,9 @@ export default class Home extends Component {
           <>
             <h1>Welcome to BarBack!</h1>
             <h2>Select a bar to continue.</h2>
-            <Link to="/bars">View Bars</Link>
+            <Link to="/bars">
+              <h2>View Bars</h2>
+            </Link>
           </>
         ) : (
           <>

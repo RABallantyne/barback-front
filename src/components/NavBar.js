@@ -14,7 +14,7 @@ function NavBar(props) {
         {isAuthenticated() && (
           <li className="nav">
             <Link className="nav-link" to="/">
-              Home
+              <h5>Home</h5>
             </Link>
           </li>
         )}
@@ -22,7 +22,7 @@ function NavBar(props) {
         {isAuthenticated() && (
           <li className="nav">
             <Link className="nav-link" to="/bars">
-              Bars
+              <h5>Bars</h5>
             </Link>
           </li>
         )}
