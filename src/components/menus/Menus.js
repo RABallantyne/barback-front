@@ -13,20 +13,20 @@ export default class Menus extends Component {
     drinks: [],
     displayDrinks: false,
     displayMenus: false,
-    menuName: ""
-  };
-
-  showMenus = () => {
-    let config = {
+    menuName: "",
+    config: {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
-    };
+    }
+  };
+
+  showMenus = () => {
     axios
       .get(
         `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus`,
-        config
+        this.state.config
       )
       .then(response => {
         this.setState({ menus: response.data, displayMenus: true });
@@ -55,33 +55,21 @@ export default class Menus extends Component {
   };
 
   addDrink = drink => {
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
-      }
-    };
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.state.selectedMenu}/drinks`,
         drink,
-        config
+        this.state.config
       )
       .then(() => this.showDrinks());
   };
 
   addMenu = menu => {
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
-      }
-    };
     axios
       .post(
         `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus`,
         menu,
-        config
+        this.state.config
       )
       // .then(result => console.log(result))
       .then(() => this.showMenus())
@@ -89,18 +77,14 @@ export default class Menus extends Component {
   };
 
   deleteMenu = menu => {
-    let config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
-      }
-    };
     axios
       .delete(
         `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${menu}`,
-        config
+        this.state.config
       )
-      .then(() => this.showMenus());
+      .then(() => this.showMenus())
+      .then(() => this.setState({ selectedMenu: null, displayMenus: true }));
+    // .then(() => this.setState({ displayMenus: true }));
   };
 
   toggleAddMenu = () => {

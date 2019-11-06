@@ -23,7 +23,7 @@ export default class AddMenuForm extends Component {
   };
   render() {
     return (
-      <div class="container">
+      <div className="container">
         <form onSubmit={this.handleSubmit}>
           <div className="form-row">
             <div className="col">

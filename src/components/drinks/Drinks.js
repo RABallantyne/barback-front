@@ -69,7 +69,8 @@ export default class Drinks extends Component {
         `${process.env.REACT_APP_API_URL}/bars/${this.props.selectedBar}/menus/${this.props.selectedMenu}/drinks/${drink}`,
         config
       )
-      .then(() => this.props.showDrinks());
+      .then(() => this.props.showDrinks())
+      .then(() => this.setState({ showDrink: false }));
   };
 
   editDrink = (drink, id) => {
