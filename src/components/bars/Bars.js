@@ -4,16 +4,23 @@ import AddBarForm from "./AddBarForm";
 import Products from "../products/Products";
 import Menus from "../menus/Menus";
 import "./Bars.css";
+import Auth from "../../Auth";
+import NavBar from "../NavBar";
 
 export default class Bars extends Component {
-  state = {
-    bars: [],
-    displayBars: [],
-    selectedBar: null,
-    showMenus: false,
-    bar: [],
-    showProducts: false
-  };
+  constructor(props) {
+    super(props);
+    this.auth = new Auth(this.props.history);
+
+    this.state = {
+      bars: [],
+      displayBars: [],
+      selectedBar: null,
+      showMenus: false,
+      bar: [],
+      showProducts: false
+    };
+  }
 
   showBars = () => {
     let config = {
@@ -107,6 +114,7 @@ export default class Bars extends Component {
   render() {
     return (
       <div className="main-container">
+        <NavBar auth={this.auth} />
         {this.state.selectedBar ? null : (
           <div className="bars-selection">
             <h1>Your Bars</h1>
