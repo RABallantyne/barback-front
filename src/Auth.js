@@ -57,7 +57,7 @@ export default class Auth {
     this.userProfile = null;
     this.auth0.logout({
       clientID: process.env.REACT_APP_AUTH0_CLIENT_ID,
-      returnTo: "http://localhost:3001"
+      returnTo: "https://barback-app-1489b.firebaseapp.com/"
     });
   };
 
