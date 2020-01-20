@@ -29,12 +29,14 @@ class App extends Component {
         />
         <Route
           path="/bars"
-          render={props =>
-            this.auth.isAuthenticated() ? (
+          render={
+            props => (
+              // this.auth.isAuthenticated() ? (
               <Bars key={Math.random()} auth={this.auth} {...props} />
-            ) : (
-              this.auth.login()
             )
+            // ) : (
+            // this.auth.login()
+            // )
           }
         />
       </div>
