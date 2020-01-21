@@ -10,9 +10,10 @@ export default class Home extends Component {
         {/* {isAuthenticated() ? ( */}
         <>
           <h1>Welcome to BarBack!</h1>
-          <h2>Select a bar to continue.</h2>
+
+          <h2>For demonstration purposes, auth has been disabled.</h2>
           <Link to="/bars">
-            <h2>View Bars</h2>
+            <h2>Log In</h2>
           </Link>
         </>
         {/* ) : ( */}
