@@ -25,12 +25,12 @@ export default class Bars extends Component {
   showBars = () => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
-      .get(`${process.env.REACT_APP_API_URL}/bars`, config)
+      .get("https://serene-hollows-86823.herokuapp.com/bars", config)
       .then(response => {
         this.setState({ bars: response.data });
       });
@@ -39,8 +39,8 @@ export default class Bars extends Component {
   showBar = () => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
@@ -60,8 +60,8 @@ export default class Bars extends Component {
   addBar = bar => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
@@ -72,8 +72,8 @@ export default class Bars extends Component {
   deleteBar = id => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios.delete(`${process.env.REACT_APP_API_URL}/bars/${id}`, config);

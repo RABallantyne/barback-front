@@ -36,8 +36,8 @@ export default class Drink extends Component {
   addToDrink = (products_id, quantity) => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
@@ -57,8 +57,8 @@ export default class Drink extends Component {
   removeFromDrink = productDrinkId => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios

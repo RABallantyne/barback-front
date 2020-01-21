@@ -20,8 +20,8 @@ export default class Products extends Component {
   showProducts = () => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
 
@@ -90,8 +90,8 @@ export default class Products extends Component {
   addProduct = product => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
@@ -108,8 +108,8 @@ export default class Products extends Component {
   editProduct = (product, id) => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
@@ -126,8 +126,8 @@ export default class Products extends Component {
   deleteProduct = id => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios.delete(

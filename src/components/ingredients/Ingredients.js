@@ -16,8 +16,8 @@ export default class Ingredients extends Component {
   showProducts = () => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
 

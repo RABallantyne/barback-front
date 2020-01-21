@@ -32,8 +32,8 @@ export default class Drinks extends Component {
     });
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
@@ -60,8 +60,8 @@ export default class Drinks extends Component {
   deleteDrink = drink => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
@@ -76,8 +76,8 @@ export default class Drinks extends Component {
   editDrink = (drink, id) => {
     let config = {
       headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${this.props.auth.getAccessToken()}`
+        "Content-Type": "application/json"
+        // Authorization: `Bearer ${this.props.auth.getAccessToken()}`
       }
     };
     axios
