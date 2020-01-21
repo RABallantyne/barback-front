@@ -7,18 +7,34 @@
 }
 
 .nav-buttons-container {
+  background-color: black;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
   /* flex-direction: column; */
   /* width: 10%; */
-  /* padding: 20px; */
-  /* border: 20px; */
+  padding: 5px;
   margin: 5px;
+  color: white;
+}
+
+.homebutton {
+  font-style: italic;
+  font-weight: bolder;
+  font-size: large;
+}
+
+.navish {
+  display: flex;
 }
 
 .navbutton {
-  background-color: rgb(232, 232, 232);
+  /* background-color: rgb(232, 232, 232); */
   margin: 10px;
+  font-weight: bold;
+}
+.navbutton:hover {
+  cursor: pointer;
 }
 
 .main-container {
@@ -28,7 +44,7 @@
 }
 
 .bars-selection {
-  margin: 100px 500px 100px 500px;
+  /* margin: 100px 500px 100px 500px; */
   padding: 10px;
   /* border: 2px solid black; */
   border-radius: 5px;

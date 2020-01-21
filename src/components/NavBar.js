@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, BrowserRouter, Route, Switch } from "react-router-dom";
 
 import "./NavBar.css";
 
@@ -11,38 +11,35 @@ function NavBar(props) {
         <h4 className="title">BarBack</h4>
       </a>
       <ul className="nav">
-        {isAuthenticated() && (
-          <li className="nav">
-            <Link className="nav-link" to="/">
-              <h5>Home</h5>
-            </Link>
-          </li>
-        )}
-
-        {isAuthenticated() && (
-          <li className="nav">
-            <Link className="nav-link" to="/bars">
-              <h5>Bars</h5>
-            </Link>
-          </li>
-        )}
-
-        {/* {isAuthenticated() && (
-          <li className="nav">
-            <Link className="nav-link" to="/products">
-              Products
-            </Link>
-          </li>
-        )} */}
-
-        <li className="navbar-right">
+        {/* {isAuthenticated() && ( */}
+        <li className="nav">
+          <Link className="nav-link" to="/">
+            <h5>Home</h5>
+          </Link>
+        </li>
+        {/* // )} */}
+        {/* {isAuthenticated() && ( */}
+        <li className="nav">
+          <Link className="nav-link" to="/bars">
+            <h5>Bars</h5>
+          </Link>
+        </li>
+        {/* )} */}
+        {/* {isAuthenticated() && ( */}
+        <li className="nav">
+          <Link className="nav-link" to="/products">
+            <h5>Products</h5>
+          </Link>
+        </li>
+        {/* )} */}
+        {/* <li className="navbar-right">
           <button
             className="button"
             onClick={isAuthenticated() ? logout : login}
           >
             {isAuthenticated() ? "Log Out" : "Log In"}
           </button>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

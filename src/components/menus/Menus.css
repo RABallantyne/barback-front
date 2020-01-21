@@ -2,7 +2,7 @@
   border: solid black 2px;
   padding: 5px;
   margin: 5px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   display: flex;
   flex-direction: column;
   justify-content: left;

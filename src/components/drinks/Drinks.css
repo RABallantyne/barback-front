@@ -4,7 +4,7 @@
   border: solid black 2px;
   padding: 5px;
   margin: 40px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .drinks-group {
@@ -18,5 +18,5 @@
   border: solid black 2px;
   padding: 5px;
   margin: 5px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }

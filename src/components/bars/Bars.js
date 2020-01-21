@@ -6,6 +6,7 @@ import Menus from "../menus/Menus";
 import "./Bars.css";
 import Auth from "../../Auth";
 import NavBar from "../NavBar";
+import { Link } from "react-router-dom";
 
 export default class Bars extends Component {
   constructor(props) {
@@ -114,7 +115,7 @@ export default class Bars extends Component {
   render() {
     return (
       <div className="main-container">
-        <NavBar auth={this.auth} />
+        {/* <NavBar auth={this.auth} /> */}
         {this.state.selectedBar ? null : (
           <div className="bars-selection">
             <h1>Your Bars</h1>
@@ -136,25 +137,25 @@ export default class Bars extends Component {
             <AddBarForm addBar={this.addBar} />
           </div>
         )}
-        <div className="nav-buttons-container">
-          {this.state.selectedBar ? (
-            <button
-              className={"navbutton"}
-              onClick={() => this.toggleShowMenus()}
-            >
-              Menus
-            </button>
-          ) : null}
+        {this.state.selectedBar ? (
+          <div className="nav-buttons-container">
+            <Link className="homebutton" to="/bars">
+              BarBack
+            </Link>
+            <div className="navish">
+              <p className="navbutton" onClick={() => this.toggleShowMenus()}>
+                MENUS
+              </p>
 
-          {this.state.selectedBar ? (
-            <button
-              className={"navbutton"}
-              onClick={() => this.toggleShowProducts()}
-            >
-              Products
-            </button>
-          ) : null}
-        </div>
+              <p
+                className="navbutton"
+                onClick={() => this.toggleShowProducts()}
+              >
+                PRODUCTS
+              </p>
+            </div>
+          </div>
+        ) : null}
 
         <div className="menus-container">
           {this.state.showMenus ? (
